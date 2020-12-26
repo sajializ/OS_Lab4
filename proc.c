@@ -17,6 +17,8 @@ struct semaphore {
   int rear; // for using queue.
 };
 
+int producer_consumer_counter = 0;
+
 struct semaphore semaphores[NUMBER_OF_SEMAPHORES];
 
 struct {
@@ -594,4 +596,22 @@ semaphore_release(int i)
     wakeup(wake);
   }
   release(&semaphores[i].lock);
+}
+
+void
+inc_counter(void)
+{
+  producer_consumer_counter++;
+}
+
+void
+dec_counter(void)
+{
+  producer_consumer_counter--;
+}
+
+int
+get_counter(void)
+{
+  return producer_consumer_counter;
 }

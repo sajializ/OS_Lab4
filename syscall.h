@@ -23,3 +23,6 @@
 #define SYS_semaphore_initialize 22
 #define SYS_semaphore_aquire 23
 #define SYS_semaphore_release 24
+#define SYS_inc_counter 40
+#define SYS_dec_counter 41
+#define SYS_get_counter 42

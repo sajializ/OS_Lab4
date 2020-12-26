@@ -129,7 +129,19 @@ sys_semaphore_release(void)
 }
 
 void
-sys_print()
+sys_inc_counter(void)
 {
-  cprintf("SDFDFG\n");
+  inc_counter();
+}
+
+void
+sys_dec_counter(void)
+{
+  dec_counter();
+}
+
+int
+sys_get_counter(void)
+{
+  return get_counter();
 }

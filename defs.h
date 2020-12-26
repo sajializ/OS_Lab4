@@ -123,6 +123,9 @@ void            yield(void);
 void            semaphore_initialize(int i, int v, int m);
 void            semaphore_aquire(int i);
 void            semaphore_release(int i);
+void            inc_counter(void);
+void            dec_counter(void);
+int             get_counter(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);
