@@ -173,6 +173,8 @@ UPROGS=\
 	_init\
 	_kill\
 	_producer_consumer\
+	_condition_variable_test\
+	_readers_writers\
 	_ln\
 	_ls\
 	_mkdir\
@@ -251,7 +253,7 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 EXTRA=\
 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
 	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
-	printf.c umalloc.c producer_consumer.c\
+	printf.c umalloc.c producer_consumer.c condition_variable_test.c readers_writers.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 
