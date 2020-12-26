@@ -26,6 +26,9 @@ int uptime(void);
 int semaphore_initialize(int, int, int);
 int semaphore_aquire(int);
 int semaphore_release(int);
+void inc_counter(void);
+void dec_counter(void);
+int get_counter(void);
 
 // ulib.c
 int stat(const char*, struct stat*);
