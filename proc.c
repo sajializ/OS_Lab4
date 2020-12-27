@@ -18,6 +18,8 @@ struct semaphore {
 };
 
 int producer_consumer_counter = 0;
+struct spinlock rw_mutex;
+struct spinlock mutex;
 
 struct semaphore semaphores[NUMBER_OF_SEMAPHORES];
 
@@ -671,9 +673,17 @@ cv_wait(struct condvar *lk) {
   sleep1(lk);
 }
 
-
 void 
 cv_signal(struct condvar *lk) {
   wakeup(lk);
 }
 
+void
+acquire_lock(struct spinlock* lock) {
+  acquire(lock);
+}
+
+void
+release_lock(struct spinlock* lock) {
+  release(lock);
+}

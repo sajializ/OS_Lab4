@@ -35,6 +35,8 @@ int get_counter(void);
 
 void cv_wait(struct condvar*);
 void cv_signal(struct condvar*);
+void acquire_lock(struct spinlock*);
+void release_lock(struct spinlock*);
 
 // ulib.c
 int stat(const char*, struct stat*);

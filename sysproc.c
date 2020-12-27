@@ -170,3 +170,23 @@ sys_cv_signal(void) {
   cv_signal(cv);
   return 0;
 }
+
+int
+sys_acquire_lock(void)
+{
+  struct spinlock *cv;
+  if (argptr(0, (void*)&cv, sizeof(*cv)) < 0)
+    return -1;
+  acquire_lock(cv);
+  return 0;
+}
+
+int
+sys_release_lock(void)
+{
+  struct spinlock *cv;
+  if (argptr(0, (void*)&cv, sizeof(*cv)) < 0)
+    return -1;
+  release_lock(cv);
+  return 0;
+}
