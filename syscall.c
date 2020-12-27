@@ -108,6 +108,7 @@ extern int sys_semaphore_aquire(void);
 extern int sys_semaphore_release(void);
 extern int sys_inc_counter(void);
 extern int sys_dec_counter(void);
+extern int sys_reset_counter(void);
 extern int sys_get_counter(void);
 
 static int (*syscalls[])(void) = {
@@ -137,6 +138,7 @@ static int (*syscalls[])(void) = {
 [SYS_semaphore_release] sys_semaphore_release,
 [SYS_inc_counter] sys_inc_counter,
 [SYS_dec_counter] sys_dec_counter,
+[SYS_reset_counter] sys_reset_counter,
 [SYS_get_counter] sys_get_counter,
 };
 

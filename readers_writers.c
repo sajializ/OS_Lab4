@@ -7,6 +7,8 @@
 
 void
 readers_writers(){
+
+  reset_counter();
   for (int i = 0; i < 6; i++){
       int pid = fork();
       if (pid == 0){
@@ -25,16 +27,16 @@ readers_writers(){
         if (i != 0 && i != 4){
             printf(1, "Child %d Executing as a reader\n", i + 1);
             // wait(mutex);
-            // read_count++;
-            // if (read_count == 1)
+            // inc_counter();
+            // if (get_counter() == 1)
             //   wait(rw_mutex);
             // signal(mutex);
 
             // Reading ...
 
             // wait(mutex);
-            // read_count--;
-            // if (read_count == 0)
+            // dec_counter();
+            // if (get_counter() == 0)
             //   signal(rw_mutex);
             // signal(mutex)
         }

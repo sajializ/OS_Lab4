@@ -28,6 +28,7 @@ int semaphore_aquire(int);
 int semaphore_release(int);
 void inc_counter(void);
 void dec_counter(void);
+void reset_counter(void);
 int get_counter(void);
 
 // ulib.c

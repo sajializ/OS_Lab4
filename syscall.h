@@ -25,4 +25,5 @@
 #define SYS_semaphore_release 24
 #define SYS_inc_counter 40
 #define SYS_dec_counter 41
-#define SYS_get_counter 42
+#define SYS_reset_counter 42
+#define SYS_get_counter 43

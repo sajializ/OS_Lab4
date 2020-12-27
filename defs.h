@@ -125,6 +125,7 @@ void            semaphore_aquire(int i);
 void            semaphore_release(int i);
 void            inc_counter(void);
 void            dec_counter(void);
+void            reset_counter(void);
 int             get_counter(void);
 
 // swtch.S

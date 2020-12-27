@@ -140,6 +140,12 @@ sys_dec_counter(void)
   dec_counter();
 }
 
+void
+sys_reset_counter(void)
+{
+  reset_counter();
+}
+
 int
 sys_get_counter(void)
 {

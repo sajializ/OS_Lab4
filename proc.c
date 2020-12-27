@@ -610,6 +610,12 @@ dec_counter(void)
   producer_consumer_counter--;
 }
 
+void
+reset_counter(void)
+{
+  producer_consumer_counter = 0;
+}
+
 int
 get_counter(void)
 {
