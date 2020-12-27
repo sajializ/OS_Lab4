@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "spinlock.h"
 
 int
 sys_fork(void)
@@ -150,4 +151,22 @@ int
 sys_get_counter(void)
 {
   return get_counter();
+}
+
+int
+sys_cv_wait(void) {
+  struct condvar *cv;
+  if (argptr(0, (void*)&cv, sizeof(*cv)) < 0)
+    return -1;
+  cv_wait(cv);
+  return 0;
+}
+
+int
+sys_cv_signal(void) {
+  struct condvar *cv;
+  if (argptr(0, (void*)&cv, sizeof(*cv)) < 0)
+    return -1;
+  cv_signal(cv);
+  return 0;
 }

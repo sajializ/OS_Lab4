@@ -4,15 +4,20 @@
 #include "fcntl.h"
 #include "syscall.h"
 #include "user.h"
+#include "spinlock.h"
 
 void
 test(){
+  struct condvar cv;
+
   int pid = fork();
   if (pid < 0){
     printf(1, "Error forking first child.\n");
   }
   else if (pid == 0){
+    sleep(100);
     printf(1, "Child 1 Executing\n");
+    cv_signal(&cv);
   }
   else{
     int pid = fork();
@@ -20,6 +25,8 @@ test(){
         printf(1, "Error forking first child.\n");
     }
     else if (pid == 0){
+        cv_wait(&cv);
+        sleep(100);
         printf(1, "Child 2 Executing\n");
     }
     else{

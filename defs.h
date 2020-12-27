@@ -9,6 +9,7 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
+struct condvar;
 
 // bio.c
 void            binit(void);
@@ -127,6 +128,9 @@ void            inc_counter(void);
 void            dec_counter(void);
 void            reset_counter(void);
 int             get_counter(void);
+
+void		cv_wait(struct condvar*);
+void		cv_signal(struct condvar*);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

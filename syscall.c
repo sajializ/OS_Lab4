@@ -110,6 +110,8 @@ extern int sys_inc_counter(void);
 extern int sys_dec_counter(void);
 extern int sys_reset_counter(void);
 extern int sys_get_counter(void);
+extern int sys_cv_wait(void);
+extern int sys_cv_signal(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -140,6 +142,8 @@ static int (*syscalls[])(void) = {
 [SYS_dec_counter] sys_dec_counter,
 [SYS_reset_counter] sys_reset_counter,
 [SYS_get_counter] sys_get_counter,
+[SYS_cv_wait] sys_cv_wait,
+[SYS_cv_signal] sys_cv_signal,
 };
 
 void

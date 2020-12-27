@@ -4,9 +4,13 @@
 #include "fcntl.h"
 #include "syscall.h"
 #include "user.h"
+#include "spinlock.h"
 
 void
 readers_writers(){
+
+  // struct condvar rw;
+  // struct condvar mutex;
 
   reset_counter();
   for (int i = 0; i < 6; i++){

@@ -9,3 +9,6 @@ struct spinlock {
                      // that locked the lock.
 };
 
+struct condvar {
+  struct spinlock lock;
+};

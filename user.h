@@ -1,5 +1,7 @@
 struct stat;
 struct rtcdate;
+struct spinlock;
+struct condvar;
 
 // system calls
 int fork(void);
@@ -31,6 +33,9 @@ void dec_counter(void);
 void reset_counter(void);
 int get_counter(void);
 
+void cv_wait(struct condvar*);
+void cv_signal(struct condvar*);
+
 // ulib.c
 int stat(const char*, struct stat*);
 char* strcpy(char*, const char*);
@@ -44,3 +49,7 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
+
+void init_lock(struct spinlock*);
+void lock(struct spinlock*);
+void unlock(struct spinlock*);

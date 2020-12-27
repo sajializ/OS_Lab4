@@ -621,3 +621,59 @@ get_counter(void)
 {
   return producer_consumer_counter;
 }
+
+void 
+init_lock(struct spinlock *lk) {
+  lk->locked = 0;
+}
+
+void lock(struct spinlock *lk) {
+  while(xchg(&lk->locked, 1) != 0)
+    ;
+  
+}
+
+void
+unlock(struct spinlock *lk) {
+  asm volatile("movl $0, %0" : "+m" (lk->locked) : );
+}
+
+void
+sleep1(void *chan)
+{
+  struct proc *p = myproc();
+  
+  if(p == 0)
+    panic("sleep");
+
+  // Must acquire ptable.lock in order to
+  // change p->state and then call sched.
+  // Once we hold ptable.lock, we can be
+  // guaranteed that we won't miss any wakeup
+  // (wakeup runs with ptable.lock locked),
+  // so it's okay to release lk.
+  acquire(&ptable.lock);  //DOC: sleeplock1
+  // Go to sleep.
+  p->chan = chan;
+  p->state = SLEEPING;
+
+  sched();
+
+  // Tidy up.
+  p->chan = 0;
+
+  // Reacquire original lock.
+  release(&ptable.lock);
+}
+
+void 
+cv_wait(struct condvar *lk) {
+  sleep1(lk);
+}
+
+
+void 
+cv_signal(struct condvar *lk) {
+  wakeup(lk);
+}
+
