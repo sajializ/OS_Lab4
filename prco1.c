@@ -6,6 +6,7 @@
 #include "user.h"
 
 #define BUFFER_SIZE 5
+#define STDOUT 1
 
 void
 producer()
@@ -19,18 +20,18 @@ producer()
     while (get_counter() == BUFFER_SIZE)
     ; // Wait
 
-    /*
-      Update shared memory.
-    */
     in = (in + 1) % BUFFER_SIZE;
 
     semaphore_aquire(1);
-    printf(2, "Producer aquired lock\n");
+    /*
+      Update shared memory.
+    */
+    printf(STDOUT, "Producer aquired lock\n");
     inc_counter();
+    printf(STDOUT, "Producer released lock\n");
     semaphore_release(1);
-    printf(2, "Producer released lock\n");
 
-    sleep(500);
+    sleep(300);
   }
 }
 
@@ -42,21 +43,21 @@ consumer()
   {
     while (get_counter() == 0)
     ; // Wait
-    /*
-      Update shared memory.
-    */
     out = (out + 1) % BUFFER_SIZE;
 
     semaphore_aquire(1);
-    printf(2, "Consumer aquired lock\n");
+    /*
+      Update shared memory.
+    */
+    printf(STDOUT, "Consumer aquired lock\n");
     dec_counter();
+    printf(STDOUT, "Consumer released lock\n");
     semaphore_release(1);
-    printf(2, "Consumer released lock\n");
 
     /*
       Consume an item.
     */
-    sleep(500);
+    sleep(300);
   }
 }
 
