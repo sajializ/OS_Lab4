@@ -117,6 +117,6 @@ void lock(struct spinlock *lk) {
 }
 
 void
-unlock(struct spinlock *lk) {\
+unlock(struct spinlock *lk) {
   asm volatile("movl $0, %0" : "+m" (lk->locked) : );
 }
